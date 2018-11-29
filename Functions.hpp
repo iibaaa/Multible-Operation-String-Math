@@ -19,6 +19,8 @@ double convert(std::string);
 
 void control(std::string *);
 
+void doubleplusandminus(std::string *);
+
 void make_calculate(double,double,char,double *);
 
 #endif /* Functions_hpp */
