@@ -15,7 +15,6 @@ using namespace std;
 //--------------------------------
 Calculator::Calculator(string a)
 {
-   // set_string(a).locate_opt().seperate_nums().make_operation().test_print();
     set_string(a).locate_opt().seperate_nums().make_operation().result_print();
 }
 
@@ -23,6 +22,7 @@ Calculator & Calculator::set_string(string a)
 {
     delete_blank(&a);
     comma_to_dot(&a);
+    doubleplusandminus(&a);
     control(&a);
     input = a;
     size = input.size();
@@ -32,6 +32,8 @@ Calculator & Calculator::set_string(string a)
 //---------------------------------------
 Calculator & Calculator::locate_opt(void)
 {
+    
+        
     output = input.substr(0,size);
     output.insert(0,"(");
     numberofopt = 0;
@@ -42,16 +44,15 @@ Calculator & Calculator::locate_opt(void)
     {
         if(is_number(input[i]) == 0 && i != 0 && last_loc_opt+1 != i)
            {
-              
                numberofopt++;
                set_opt(i,input[i]);
                last_loc_opt = i;
-               k = i + 2*(numberofopt);
+               k = i+ 2*(numberofopt);
                output.insert(k-1,")");
                output.insert(k+1,"(");
            }
     }
-    cout << "Operator Number : "<< numberofopt<<endl;
+    //cout << "Operator Number : "<< numberofopt<<endl;
     return *this;
 }
 
@@ -108,6 +109,7 @@ Calculator & Calculator::result_print()
 Calculator & Calculator::make_operation()
 {
     int i=0;
+
     make_calculate(num[i],num[i+1],opt[0],&result);
     //cout << "1. and 2 number operation = " <<result<<endl;
     for(i=1;i<numberofopt;i++)
